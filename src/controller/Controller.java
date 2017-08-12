@@ -23,16 +23,17 @@ public class Controller extends HttpServlet {
 
         if (request.getParameter("roomPrice") != null) {
             playRoom = new PlayRoom(Double.valueOf(request.getParameter("roomPrice")));
-
             playRoom.setAllToys(playRoom.fillPlayRoom());
-
-        } else {
+        } else if (request.getParameter("sort") != null) {
             playRoom = (PlayRoom) getServletContext().getAttribute("playRoom");
             if (request.getParameter("sort").equals("Price"))
                 (playRoom.getAllToys()).sort(PlayRoom.SORT_BY_COST);
             else if (request.getParameter("sort").equals("Size"))
                 (playRoom.getAllToys()).sort(PlayRoom.SORT_BY_SIZE);
+        } else {
+            playRoom = (PlayRoom) getServletContext().getAttribute("playRoom");
 
+            playRoom.setAllToys(playRoom.findByCost(playRoom.getAllToys(), request.getParameter("find_price")));
         }
 
         getServletContext().setAttribute("playRoom", playRoom);

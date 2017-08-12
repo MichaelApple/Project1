@@ -9,10 +9,9 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css">
     <link rel="icon" href="images/icon.png" type="image/png" sizes="16x16">
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script src="js/library.js"></script>
+
     <title>Process User</title>
 </head>
 <body>
@@ -49,6 +48,28 @@
                             </div>
                         </form>
                     </div>
+                    <div class="container myContainer">
+                        <form action="playRoom" method="post">
+                            <h4 align="center">Find Toys by Price</h4>
+                            <input type="hidden" name="find" value="find">
+                            Filter by price interval: <br><b>$ 1</b>
+                            <input id="ex2" type="text" class="span2" name="find_price" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[10,75]"/> <b>$ 100</b>
+                            <p>
+                                <c:choose>
+                                    <c:when test="${empty param.find_price}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <b><c:out value="${param.find_price}" /></b>
+                                    </c:otherwise>
+                                </c:choose>
+                            <br>
+                            <div class="form-group row">
+                                <div class="offset-sm-4 col-sm-6 offset-sm-2">
+                                    <button type="submit" class="btn btn-primary">Find</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="col-sm-8">
                     <c:forEach var="toy" items="${playRoom.allToys}">
@@ -72,5 +93,11 @@
                 </div>
             </div>
         </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js"></script>
+        <script src="js/library.js"></script>
 </body>
 </html>

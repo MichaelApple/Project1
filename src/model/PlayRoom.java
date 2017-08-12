@@ -103,4 +103,17 @@ public class PlayRoom {
     public static final Comparator<Toy> SORT_BY_COST = Comparator.comparingInt(Toy::getCost);
 
     public static final Comparator<Toy> SORT_BY_SIZE = Comparator.comparing(Toy::getSize);
+
+    public List<Toy> findByCost(List<Toy> toyList, String range) {
+        List<Toy> sortedByCost = new ArrayList<Toy>();
+        System.out.println(range);
+        int min = Integer.parseInt(range.split(",")[0]);
+        int max = Integer.parseInt(range.split(",")[1]);
+
+        for (Toy toy : toyList) {
+            if (toy.getCost() >= min & toy.getCost() <= max)
+                sortedByCost.add(toy);
+        }
+        return sortedByCost;
+    }
 }

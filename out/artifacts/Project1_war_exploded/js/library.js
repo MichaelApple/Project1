@@ -58,7 +58,9 @@ jQuery(function($){
 
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').focus()
-})
+});
+
+$("#ex2").slider({});
 
 
 
