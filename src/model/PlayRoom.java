@@ -6,7 +6,6 @@ import enums.ToySize;
 import model.toys.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -55,6 +54,7 @@ public class PlayRoom {
      * @return
      */
     private List<Toy> fillRoomByDefault() {
+
         List<Toy> allToys = new ArrayList<Toy>();
         allToys.add(new Ball("Ball",10, ToySize.SMALL, AgeGroup.INFANT, Sex.UNISEX));
         allToys.add(new Ball("Ball",12, ToySize.MEDIUM, AgeGroup.INFANT, Sex.UNISEX));
@@ -66,12 +66,15 @@ public class PlayRoom {
         allToys.add(new Ball("Ball",10, ToySize.SMALL, AgeGroup.KID, Sex.UNISEX));
         allToys.add(new Ball("Ball",12, ToySize.MEDIUM, AgeGroup.KID, Sex.UNISEX));
         allToys.add(new Ball("Ball",15, ToySize.BIG, AgeGroup.KID, Sex.UNISEX));
+
         allToys.add(new Car("Car",30, ToySize.SMALL, AgeGroup.KID, Sex.MALE));
         allToys.add(new Car("Car",50, ToySize.MEDIUM, AgeGroup.KID, Sex.MALE));
         allToys.add(new Car("Car",100, ToySize.BIG, AgeGroup.KID, Sex.MALE));
+
         allToys.add(new Cube("Cube",5, ToySize.SMALL, AgeGroup.KID, Sex.UNISEX));
         allToys.add(new Cube("Cube",7, ToySize.MEDIUM, AgeGroup.KID, Sex.UNISEX));
         allToys.add(new Cube("Cube",10, ToySize.BIG, AgeGroup.KID, Sex.UNISEX));
+
         allToys.add(new Doll("Doll",50, ToySize.SMALL, AgeGroup.KID, Sex.FEMALE));
         allToys.add(new Doll("Doll",75, ToySize.MEDIUM, AgeGroup.KID, Sex.FEMALE));
         allToys.add(new Doll("Doll",100, ToySize.BIG, AgeGroup.KID, Sex.FEMALE));

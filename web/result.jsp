@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="model.PlayRoom" %>
+<%@ page import="db.Database" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
@@ -24,6 +25,10 @@
             <hr class="my-4">
             <h4 align="center">Your Room Cost: ${playRoom.moneyAmount}</h4>
             <h4 align="center">Toys in your room: ${playRoom.allToys.size()} </h4>
+
+            <h2><%
+                Database.getConnection();
+            %></h2>
         </div>
         <div class="container">
             <div class="row">
