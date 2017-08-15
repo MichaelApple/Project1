@@ -63,7 +63,14 @@
                             <h4 align="center">Find Toys by Price</h4>
                             <input type="hidden" name="find" value="find">
                             Filter by price interval: <br><b>$ 1</b>
-                            <input id="ex2" type="text" class="span2" name="find_price" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[10,75]"/> <b>$ 100</b>
+                            <input id="ex2" type="text" class="span2" name="find_price" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="<c:choose>
+                                    <c:when test="${empty param.find_price}">
+                                    [10, 75]
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:out value="[${param.find_price}]" />
+                                    </c:otherwise>
+                                </c:choose>"/> <b>$ 100</b>
                             <p>
                                 <c:choose>
                                     <c:when test="${empty param.find_price}">
