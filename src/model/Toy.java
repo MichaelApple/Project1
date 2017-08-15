@@ -1,4 +1,4 @@
-package model.toys;
+package model;
 
 import enums.AgeGroup;
 import enums.Sex;

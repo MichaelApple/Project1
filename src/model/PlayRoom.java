@@ -1,12 +1,7 @@
 package model;
 
 import db.Database;
-import enums.AgeGroup;
-import enums.Sex;
-import enums.ToySize;
-import model.toys.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -50,7 +45,6 @@ public class PlayRoom {
         this.allToys = allToys;
     }
 
-
     public List<Toy> fillPlayRoom() {
         double totalCost = 0;
 
@@ -75,16 +69,16 @@ public class PlayRoom {
 
     public static final Comparator<Toy> SORT_BY_SIZE = Comparator.comparing(Toy::getSize);
 
-    public List<Toy> findByCost(List<Toy> toyList, String range) {
-        List<Toy> sortedByCost = new ArrayList<Toy>();
+    public List<Toy> findByRangeCost(List<Toy> toyList, String range) {
+        List<Toy> findByRangeCost = new ArrayList<Toy>();
         System.out.println(range);
         int min = Integer.parseInt(range.split(",")[0]);
         int max = Integer.parseInt(range.split(",")[1]);
 
         for (Toy toy : toyList) {
             if (toy.getCost() >= min & toy.getCost() <= max)
-                sortedByCost.add(toy);
+                findByRangeCost.add(toy);
         }
-        return sortedByCost;
+        return findByRangeCost;
     }
 }

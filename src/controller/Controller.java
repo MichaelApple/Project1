@@ -33,7 +33,7 @@ public class Controller extends HttpServlet {
         } else {
             playRoom = (PlayRoom) getServletContext().getAttribute("playRoom");
 
-            playRoom.setAllToys(playRoom.findByCost(playRoom.getAllToys(), request.getParameter("find_price")));
+            //playRoom.setAllToys(playRoom.findByCost(playRoom.fillPlayRoom(), request.getParameter("find_price")));
         }
 
         getServletContext().setAttribute("playRoom", playRoom);

@@ -24,11 +24,16 @@
             </div>
             <hr class="my-4">
             <h4 align="center">Your Room Cost: ${playRoom.moneyAmount}</h4>
-            <h4 align="center">Toys in your room: ${playRoom.allToys.size()} </h4>
-
-            <h2><%
-                Database.getConnection();
-            %></h2>
+            <h4 align="center">Toys in your room:
+                <c:choose>
+                    <c:when test="${empty param.find_price}">
+                        ${playRoom.allToys.size()}
+                    </c:when>
+                    <c:otherwise>
+                        <b>${playRoom.findByRangeCost(playRoom.allToys, param.find_price).size()}</b>
+                    </c:otherwise>
+                </c:choose>
+            </h4>
         </div>
         <div class="container">
             <div class="row">
@@ -77,24 +82,48 @@
                     </div>
                 </div>
                 <div class="col-sm-8">
-                    <c:forEach var="toy" items="${playRoom.allToys}">
-                        <div class="container myContainer" style="width: 75%">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p>Toy Name: <strong><c:out value="${toy.name}" /></strong></p>
+                    <c:choose>
+                        <c:when test="${not empty param.find_price}">
+                            <c:forEach var="toy" items="${playRoom.findByRangeCost(playRoom.allToys, param.find_price)}">
+                                <div class="container myContainer" style="width: 75%">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p>Toy Name: <strong><c:out value="${toy.name}" /></strong></p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p>Price: <strong><c:out value="${toy.cost}"/></strong></p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p>Age Group: <strong><c:out value="${toy.ageGroup}"/></strong></p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p>Size: <strong><c:out value="${toy.size}"/></strong></p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <p>Price: <strong><c:out value="${toy.cost}"/></strong></p>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="toy" items="${playRoom.allToys}">
+                                <div class="container myContainer" style="width: 75%">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p>Toy Name: <strong><c:out value="${toy.name}" /></strong></p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p>Price: <strong><c:out value="${toy.cost}"/></strong></p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p>Age Group: <strong><c:out value="${toy.ageGroup}"/></strong></p>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <p>Size: <strong><c:out value="${toy.size}"/></strong></p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <p>Age Group: <strong><c:out value="${toy.ageGroup}"/></strong></p>
-                                </div>
-                                <div class="col-sm-3">
-                                    <p>Size: <strong><c:out value="${toy.size}"/></strong></p>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>

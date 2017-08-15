@@ -1,6 +1,6 @@
 package view;
 
-import model.toys.Toy;
+import model.Toy;
 
 import java.util.List;
 

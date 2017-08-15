@@ -4,7 +4,7 @@ package db;
 import enums.AgeGroup;
 import enums.Sex;
 import enums.ToySize;
-import model.toys.Toy;
+import model.Toy;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;

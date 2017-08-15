@@ -1,7 +1,7 @@
 package controller;
 
 import model.PlayRoom;
-import model.toys.Toy;
+import model.Toy;
 import view.View;
 
 import java.util.ArrayList;
