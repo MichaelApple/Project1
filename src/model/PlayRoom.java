@@ -1,10 +1,12 @@
 package model;
 
+import db.Database;
 import enums.AgeGroup;
 import enums.Sex;
 import enums.ToySize;
 import model.toys.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -49,44 +51,10 @@ public class PlayRoom {
     }
 
 
-    /**
-     * Add all types of toys in room by default. Later we can get all this data from database
-     * @return
-     */
-    private List<Toy> fillRoomByDefault() {
-
-        List<Toy> allToys = new ArrayList<Toy>();
-        allToys.add(new Ball("Ball",10, ToySize.SMALL, AgeGroup.INFANT, Sex.UNISEX));
-        allToys.add(new Ball("Ball",12, ToySize.MEDIUM, AgeGroup.INFANT, Sex.UNISEX));
-        allToys.add(new Ball("Ball",15, ToySize.BIG, AgeGroup.INFANT, Sex.UNISEX));
-        allToys.add(new Cube("Cube",5, ToySize.SMALL, AgeGroup.INFANT, Sex.UNISEX));
-        allToys.add(new Cube("Cube",7, ToySize.MEDIUM, AgeGroup.INFANT, Sex.UNISEX));
-        allToys.add(new Cube("Cube",10, ToySize.BIG, AgeGroup.INFANT, Sex.UNISEX));
-
-        allToys.add(new Ball("Ball",10, ToySize.SMALL, AgeGroup.KID, Sex.UNISEX));
-        allToys.add(new Ball("Ball",12, ToySize.MEDIUM, AgeGroup.KID, Sex.UNISEX));
-        allToys.add(new Ball("Ball",15, ToySize.BIG, AgeGroup.KID, Sex.UNISEX));
-
-        allToys.add(new Car("Car",30, ToySize.SMALL, AgeGroup.KID, Sex.MALE));
-        allToys.add(new Car("Car",50, ToySize.MEDIUM, AgeGroup.KID, Sex.MALE));
-        allToys.add(new Car("Car",100, ToySize.BIG, AgeGroup.KID, Sex.MALE));
-
-        allToys.add(new Cube("Cube",5, ToySize.SMALL, AgeGroup.KID, Sex.UNISEX));
-        allToys.add(new Cube("Cube",7, ToySize.MEDIUM, AgeGroup.KID, Sex.UNISEX));
-        allToys.add(new Cube("Cube",10, ToySize.BIG, AgeGroup.KID, Sex.UNISEX));
-
-        allToys.add(new Doll("Doll",50, ToySize.SMALL, AgeGroup.KID, Sex.FEMALE));
-        allToys.add(new Doll("Doll",75, ToySize.MEDIUM, AgeGroup.KID, Sex.FEMALE));
-        allToys.add(new Doll("Doll",100, ToySize.BIG, AgeGroup.KID, Sex.FEMALE));
-
-        //Collections.shuffle(allToys);
-        return allToys;
-    }
-
     public List<Toy> fillPlayRoom() {
         double totalCost = 0;
 
-        List<Toy> toys = this.fillRoomByDefault();
+        List<Toy> toys = Database.fillRoomByDefault();
         List<Toy> room = new ArrayList<Toy>();
 
         while (totalCost <= this.getMoneyAmount()) {

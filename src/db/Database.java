@@ -1,13 +1,17 @@
 package db;
 
 
+import enums.AgeGroup;
+import enums.Sex;
+import enums.ToySize;
+import model.toys.Toy;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,13 +30,7 @@ public class Database {
             ic = new javax.naming.InitialContext();
             ds = (javax.sql.DataSource)ic.lookup("jdbc/SQLite");
             connection = ds.getConnection();
-            System.out.println(connection.getMetaData());
 
-            Statement stmt = connection.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT  * FROM ");
-//            while (rs.next()) {
-//                System.out.println(rs.getInt("cost") + "  Something Like That!");
-//            }
 
         } catch (SQLException e) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, e);
@@ -43,4 +41,24 @@ public class Database {
         return connection;
     }
 
+    public static List<Toy> fillRoomByDefault()  {
+        List<Toy> allToys = new ArrayList<>();
+        Database.getConnection();
+        try {
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT  t.toy, p.cost, s.size, a.age_group, sex.sex FROM PlayRoom p " +
+                "LEFT JOIN Toys t on p.toy = t.id " +
+                "LEFT JOIN Size s on p.size = s.id " +
+                "LEFT JOIN Age_groups a on p.age_group = a.id " +
+                "LEFT JOIN Sex sex on p.sex = sex.id "
+        );
+        while (rs.next()) {
+
+                allToys.add(new Toy(rs.getString("toy"), rs.getInt("cost"), ToySize.valueOf(rs.getString("size")), AgeGroup.valueOf(rs.getString("age_group")), Sex.valueOf(rs.getString("sex"))));
+        }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allToys;
+    }
 }

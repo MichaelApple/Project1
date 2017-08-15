@@ -7,7 +7,7 @@ import enums.ToySize;
 /**
  * Created by Miha on 10.08.2017.
  */
-public abstract class Toy {
+public class Toy {
     private String name;
     private int cost;
     private ToySize size;
