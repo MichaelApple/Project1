@@ -30,7 +30,7 @@
                         ${playRoom.allToys.size()}
                     </c:when>
                     <c:otherwise>
-                        <b>${playRoom.findByRangeCost(playRoom.allToys, param.find_price).size()}</b>
+                        <b>${playRoom.findByRange(playRoom.allToys, param.find_price, param.select_size).size()}</b>
                     </c:otherwise>
                 </c:choose>
             </h4>
@@ -60,7 +60,15 @@
                     </div>
                     <div class="container myContainer">
                         <form action="playRoom" method="post">
-                            <h4 align="center">Find Toys by Price</h4>
+                            <h4 align="center">Find Toys</h4>
+                            <div class="form-group">
+                                <label for="sel1">Select Size:</label>
+                                <select class="form-control" id="sel1" name="select_size">
+                                    <option>Small</option>
+                                    <option>Medium</option>
+                                    <option>Big</option>
+                                </select>
+                            </div>
                             <input type="hidden" name="find" value="find">
                             Filter by price interval: <br><b>$ 1</b>
                             <input id="ex2" type="text" class="span2" name="find_price" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="<c:choose>
@@ -72,13 +80,7 @@
                                     </c:otherwise>
                                 </c:choose>"/> <b>$ 100</b>
                             <p>
-                                <c:choose>
-                                    <c:when test="${empty param.find_price}">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <b><c:out value="${param.find_price}" /></b>
-                                    </c:otherwise>
-                                </c:choose>
+                                <b><c:out value="${param.find_price}" /></b>
                             <br>
                             <div class="form-group row">
                                 <div class="offset-sm-4 col-sm-6 offset-sm-2">
@@ -91,7 +93,7 @@
                 <div class="col-sm-8">
                     <c:choose>
                         <c:when test="${not empty param.find_price}">
-                            <c:forEach var="toy" items="${playRoom.findByRangeCost(playRoom.allToys, param.find_price)}">
+                            <c:forEach var="toy" items="${playRoom.findByRange(playRoom.allToys, param.find_price, param.select_size)}">
                                 <div class="container myContainer" style="width: 75%">
                                     <div class="row">
                                         <div class="col-sm-3">

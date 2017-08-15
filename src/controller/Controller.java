@@ -32,8 +32,6 @@ public class Controller extends HttpServlet {
                 (playRoom.getAllToys()).sort(PlayRoom.SORT_BY_SIZE);
         } else {
             playRoom = (PlayRoom) getServletContext().getAttribute("playRoom");
-
-            //playRoom.setAllToys(playRoom.findByCost(playRoom.fillPlayRoom(), request.getParameter("find_price")));
         }
 
         getServletContext().setAttribute("playRoom", playRoom);

@@ -1,6 +1,8 @@
 package model;
 
+import com.sun.glass.ui.Size;
 import db.Database;
+import enums.ToySize;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -49,6 +51,7 @@ public class PlayRoom {
         double totalCost = 0;
 
         List<Toy> toys = Database.fillRoomByDefault();
+
         List<Toy> room = new ArrayList<Toy>();
 
         while (totalCost <= this.getMoneyAmount()) {
@@ -69,14 +72,16 @@ public class PlayRoom {
 
     public static final Comparator<Toy> SORT_BY_SIZE = Comparator.comparing(Toy::getSize);
 
-    public List<Toy> findByRangeCost(List<Toy> toyList, String range) {
-        List<Toy> findByRangeCost = new ArrayList<Toy>();
-        System.out.println(range);
+    public List<Toy> findByRange(List<Toy> toyList, String range, String size) {
+
+        List<Toy> findByRangeCost = new ArrayList<>();
+
         int min = Integer.parseInt(range.split(",")[0]);
         int max = Integer.parseInt(range.split(",")[1]);
 
+
         for (Toy toy : toyList) {
-            if (toy.getCost() >= min & toy.getCost() <= max)
+            if (toy.getCost() >= min & toy.getCost() <= max & toy.getSize().equals(ToySize.valueOf(size.toUpperCase())))
                 findByRangeCost.add(toy);
         }
         return findByRangeCost;
