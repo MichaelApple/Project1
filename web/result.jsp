@@ -1,30 +1,14 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.PlayRoom" %>
-<%@ page import="db.Database" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="resources.text" />
-<html lang="${language}">
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css">
-    <link rel="icon" href="images/icon.png" type="image/png" sizes="16x16">
-
-    <title>Process User</title>
-</head>
+<%@include file="header.jsp"    %>
 <body>
         <jsp:useBean id="playRoom" class="model.PlayRoom" scope="application"/>
 
-        <div class="jumbotron">
+        <div class="jumbotron" align="center">
             <div class="alert alert-success" role="alert">
-                <h3><strong>Well done!</strong> You successfully created new PlayRoom.</h3>
+                <h3><strong><fmt:message key="result.strong.heading"/> </strong> <fmt:message key="result.heading"/></h3>
             </div>
             <hr class="my-4">
-            <h4 align="center">Your Room Cost: ${playRoom.moneyAmount}</h4>
-            <h4 align="center">Toys in your room:
+            <h4>Your Room Cost: ${playRoom.moneyAmount}</h4>
+            <h4>Toys in your room:
                 <c:choose>
                     <c:when test="${empty param.find_price}">
                         ${playRoom.allToys.size()}

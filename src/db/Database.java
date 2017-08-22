@@ -45,17 +45,16 @@ public class Database {
         List<Toy> allToys = new ArrayList<>();
         Database.getConnection();
         try {
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT  t.toy, p.cost, s.size, a.age_group, sex.sex FROM PlayRoom p " +
-                "LEFT JOIN Toys t on p.toy = t.id " +
-                "LEFT JOIN Size s on p.size = s.id " +
-                "LEFT JOIN Age_groups a on p.age_group = a.id " +
-                "LEFT JOIN Sex sex on p.sex = sex.id "
-        );
-        while (rs.next()) {
-
-                allToys.add(new Toy(rs.getString("toy"), rs.getInt("cost"), ToySize.valueOf(rs.getString("size")), AgeGroup.valueOf(rs.getString("age_group")), Sex.valueOf(rs.getString("sex"))));
-        }
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT  t.toy, p.cost, s.size, a.age_group, sex.sex FROM PlayRoom p " +
+                    "LEFT JOIN Toys t on p.toy = t.id " +
+                    "LEFT JOIN Size s on p.size = s.id " +
+                    "LEFT JOIN Age_groups a on p.age_group = a.id " +
+                    "LEFT JOIN Sex sex on p.sex = sex.id "
+            );
+            while (rs.next()) {
+                allToys.add(new Toy(rs.getString("toy"), rs.getInt("cost"), ToySize.valueOf(rs.getString("size")),  AgeGroup.valueOf(rs.getString("age_group")), Sex.valueOf(rs.getString("sex"))));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

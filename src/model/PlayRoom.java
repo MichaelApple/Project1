@@ -52,7 +52,7 @@ public class PlayRoom {
 
         List<Toy> toys = Database.fillRoomByDefault();
 
-        List<Toy> room = new ArrayList<Toy>();
+        List<Toy> room = new ArrayList<>();
 
         while (totalCost <= this.getMoneyAmount()) {
             for (Toy toy : toys) {
