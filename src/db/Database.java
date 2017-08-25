@@ -28,7 +28,7 @@ public class Database {
 
         try {
             ic = new javax.naming.InitialContext();
-            ds = (javax.sql.DataSource)ic.lookup("jdbc/SQLite");
+            ds = (javax.sql.DataSource)ic.lookup("jdbc/Playroom");
             connection = ds.getConnection();
 
 
