@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
 <body>
-        <jsp:useBean id="playRoom" class="model.PlayRoom" scope="application"/>
+        <jsp:useBean id="playRoom" class="main.java.model.PlayRoom" scope="application"/>
 
         <div class="jumbotron" align="center">
             <div class="alert alert-success" role="alert">
